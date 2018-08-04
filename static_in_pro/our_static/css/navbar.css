@@ -1,0 +1,15 @@
+body {
+  min-height: 2000px;
+}
+
+.navbar-static-top {
+  margin-bottom: 19px;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #ff0055;
+    background: rgba(0,0,0,.5);
+}
+.navbar-default {
+
+margin:-20;
+}

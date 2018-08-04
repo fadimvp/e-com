@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+</br></br>
+<div class="container ">
+    <div class="row">
+        <div class="col-sm-6">
+              <h3>{{ object }}</h3>
+        </div>
+    </div>
+
+     <div class="row">
+{% for reld in products %}
+
+    <div class="col-xs-3 ">
+    <div class="thumbnail text-center" >
+        <h4> <a href="{{ reld.get_absolute_url }}">{{ reld.title }}<br/></a></h4>
+       {% if reld.get_image_url %}
+        <a href="{{ reld.get_absolute_url }}"> <img  id="img"class="img-responsive" src="{{reld.get_image_url}}" />  </a> <br/>
+
+        {% endif %}
+ </div>
+
+        {% cycle '' '' '' '</div><div class="row">' %}
+        </div>
+{% endfor %}
+
+        </div>
+
+</div>
+{% endblock %}

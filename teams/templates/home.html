@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    {% if featured_image %}
+    <div class="jumbotron">
+
+    <div class="container ">
+    <div class="row">
+    <div class="col-sm-6">
+        <h1>{{featured_image.product.title }}</h1>
+
+        <p>{{featured_image.product.description }}</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="{{featured_image.product.get_absolute_url}}" role="button">More Delails &raquo;</a>
+        </p>
+        </div>
+
+        <div class="col-sm-6">
+            <img src="{{featured_image.image.url}}" class="img-responsive"/>
+     </div>
+
+    </div>
+            </div></div>
+
+    {% else %}
+<div class="jumbotron">
+
+<div class="container ">
+    <div class="row">
+    <div class="col-sm-6">
+        <h1>Navbar example</h1>
+
+        <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
+        </p>
+        </div>
+         {% if  request.user.is_authenticated %}
+        <div class="col-sm-2">
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/5jshb-6ND9E" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+     </div>{% endif %}
+    </div></div></div>
+
+    {%endif %}
+    {% endblock %}
+{% block con %}
+ <div class="container-fluid ">
+<div class="row">
+
+<h3>Recommended Products </h3>
+{% include "products/products.html" with object_list=products col_class_set="col-sm-3" %}
+</div></div>
+    <center>
+
+
+     <!--div class="col-sm-3 col-sm-offset-1">
+        <p class="lead  text-aling- center">Built with Django &amp; Bootstrap</p>
+         <img src="https://juststickers.in/wp-content/uploads/2016/05/django-badge.png" class="img-responsive"/>
+      </div-->
+
+
+      <!--div class="col-sm-3 col-sm-2">
+      <p class="lead">Cread for starters of all kinds
+          <br/><br/>
+          <span class="fa-stack fa-lg fa-4x">
+              <i class="far fa-comment fa-stack-2x"></i>
+
+          <i class="fa fa-bolt fa-stack-1x"></i>
+             </span>
+      </p></div-->
+      <div class="col-sm-3">
+        <!--p class="lead ">Social  <br/><br/>
+
+      <div class="fb-like" data-href="http://127.0.0.1:8000/" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-url="http://127.0.0.1:8000" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</p-->
+          {% if  request.user.is_authenticated %}
+          <!--h1>you are logged !</h1>
+          {% if queryset %}
+          <h2>welcome staff </h2>
+          <table class="table">
+          {% for instanc in queryset %}
+              <tr><td>{{ forloop.counter }}</td><td>{{ instanc}}</td><td>{{ instanc.name}}</td></tr>
+          {% endfor %}
+          </table-->
+          {% endif %}
+
+      </div>
+<div class="col-sm-3 col-sm-2">
+
+    <!--form method="post" action="">{% csrf_token %}
+{{ form|crispy }}
+        <input type="submit" value="submit">
+        </form-->
+</div>
+     </div>
+{% endif %}
+
+{% endblock %}
+</center>
+    <!-- /container -->
+
+

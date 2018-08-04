@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container ">
+
+<table class="table">
+    {% for object in object_list %}
+    <tr>
+        <td><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></td><td>{{ object.inventory }}</td>
+
+    </tr>
+    {% endfor %}
+</table>
+    <div class="row">
+        <div class="col-sm-3">
+    <form method="post" action="">{% csrf_token %}
+        {{ formset.management_form }}
+        {% for form in formset %}
+        {{ form.instance.Product.title }}
+        {{ form.instance.title }}
+        {{ form |crispy }}
+        {% endfor %}
+        <input type="submit" value="Updata" class="btn"/>
+    </form></div></div>
+</div>
+{% endblock %}

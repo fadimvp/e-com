@@ -1,0 +1,17 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+.lead{
+ text-align:center;
+   color:black ;
+}
+.navbar-static-top{
+ margin-bottom:19px;
+ background-color:#7393;
+ color:#fff;
+}
