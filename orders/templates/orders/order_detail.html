@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% block  content  %}
+ <div class="container ">
+
+
+{% include "orders/order_summary_short.html" with order=order %}
+  <div class="col-sm-4 col-sm-offset-4 text-center">
+  <p>Please print for your recorder</p>
+  </div></div>
+{% endblock %}

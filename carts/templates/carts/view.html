@@ -3,7 +3,7 @@
 
     {% block jquery %}
  $(".item-qty").change(function(){
-  //$(this).next(".btn-update").fadeIn();
+//  $(this).next(".btn-update").fadeIn();
   //event.preventDefault();
    var item = $(this).prev("input[type='hidden']").val();
    var qty = $(this).val()
@@ -93,7 +93,12 @@
         <td>{{ item.item.get_title }}</td>
 
 
-       <td> <form action="." method="GET"><input type="hidden" name="item" value="{{item.item.id}}"/><input  type="number" name="qty" class="item-qty" value=" {{item.quantity}}"/> <input type="submit"class="btn-update btn btn-link"value=" Update item" style="display:none;"/>
+       <td> <form action="." method="GET">
+           <input type="hidden" name="item" value="{{ item.item.id }}"/>
+           <input  type="number" name="qty"  value="{{ item.quantity }}" class="item-qty" />
+
+
+           <input type="submit"class="btn-update btn btn-link"value=" Update item" style="display:none;"/>
        </form>
       </td>
 

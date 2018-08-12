@@ -19,8 +19,13 @@ from django.contrib import admin
 from django.conf import settings
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from carts.views import CartView,ItemCountView,CheckoutView
-from orders.views import AddressSelectFormView,UserAdressCreateView
+from carts.views import CartView,ItemCountView,CheckoutView,CheckoutFinalView
+from orders.views import(
+    AddressSelectFormView,
+    UserAdressCreateView,
+    OrderList,
+    OrderDetail
+)
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'teams.views.home', name='home'),
@@ -33,6 +38,9 @@ urlpatterns = [
     url(r'^checkout/$',CheckoutView.as_view(),name='checkout'),
     url(r'^checkout/address/$', AddressSelectFormView.as_view(), name='order_address'),
     url(r'^checkout/address/add/$', UserAdressCreateView.as_view(), name='user_address_create'),
+    url(r'^checkout/final/$', CheckoutFinalView.as_view(), name='checkout_final'),
+    url(r'^orders/$', OrderList.as_view(), name='orders'),
+    url(r'^orders/(?P<pk>\d+)/$', OrderDetail.as_view(), name='order_detail'),
 
 ]
 if settings.DEBUG :
