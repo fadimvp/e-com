@@ -1,9 +1,12 @@
+from django import http
 from django.contrib import messages
 from django.db.models import Q
 from django.http import Http404
+from django.utils import translation
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.shortcuts import render,get_object_or_404,redirect
+from django.conf import settings
 
 
 
@@ -104,5 +107,15 @@ def product_detail_view_func(request,id ):
     }
     return render(request,template,context)
 
-
+def change_language(request):
+    # current_language =translation.get_language()
+    # if current_language =="ar":
+    #     lang_code = "en"
+    # else:
+    #     lang_code ="ar"
+    lang_code =request.GET.get('lang_code')
+    response =http.HttpResponseRedirect(request.GET.get("return_url"))
+    response.set_cookie(settings.LANGUAGE_COOKIE_NAME,lang_code)
+    translation.activate(lang_code)
+    return response
 

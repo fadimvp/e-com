@@ -1,9 +1,15 @@
 {% extends "base.html"%}
 {% load i18n %}
 {% load crispy_forms_tags %}
-
+<script>
+    {% block jquery%}
+    var clientToken = "{{ client_token }}";
+    braintree.setup(clientToken, "dropin", {
+    container: "payment-form"
+});
+    {% endblock %}
+</script>
 {% block  content%}
-
 {% if not user_can_continue %}
 <div class="container ">
 <div class="col-sm-6">
@@ -32,15 +38,20 @@
 <div class="col-sm-4 col-sm-offset-4 text-center">
 
 
-    <p>{% include "orders/order_summary_short.html" with order=object %}</p><br/></div>
+    <p>{% include "orders/order_summary_short.html" with order=order %}</p><br/></div>
     <div class="col-sm-4 col-sm-offset-4 text-center">
     <p><a href="{% url 'order_address'  %}">Change an  Address </a></p>
     <br/>
     <form method="post" action="{% url 'checkout_final' %}">{% csrf_token %}
-    <input type="hidden" name="payment_token" value="ABC"/>
+    <!--<input type="hidden" name="payment_token" value="ABC"/>-->
+          <div id="payment-form"></div>
+
         <p><b><button type="submit"> Complete Order </button></b>
-    </p>
+    </p><td>{{ item.get_title }}</td>
     </form>
+        <!--<form id="checkout" method="post" action="/checkout">-->
+
+</form>
 </div>
 </div>
 {% endif %}

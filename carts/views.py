@@ -1,3 +1,5 @@
+from braintree import transaction
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
@@ -10,11 +12,20 @@ from django.views.generic.edit import FormMixin
 
 from orders.forms import GuestCheckoutForm
 from orders.mixins import CartOrderMixin
-from orders.models import UserCheckout,Order,UserAddress
+from orders.models import UserCheckout, Order, UserAddress
 from products.models import Variotion
 from .models import Cart,CartItem
 # Create your views here.
-
+import  braintree
+if settings.DEBUG:
+    gateway = braintree.BraintreeGateway(
+        braintree.Configuration(
+            environment=braintree.Environment.Sandbox,
+            merchant_id='f9hdgrhq7hn93t4z',
+            public_key='ycn3nsz4bkwmvdyt',
+            private_key='882ca7cbf5a46a78c7a943ef12f7e2ce'
+        )
+    )
 
 # cart count in navbar
 class ItemCountView(View):
@@ -148,13 +159,12 @@ class CheckoutView(CartOrderMixin,FormMixin,DetailView):
         context = super(CheckoutView, self).get_context_data(*args, **kwargs)
         user_can_continue = False
         user_check_id = self.request.session.get("user_checkout_id")
-
         if self.request.user.is_authenticated():
             user_can_continue = True
-
             user_checkout, created = UserCheckout.objects.get_or_create(email=self.request.user.email)
             user_checkout.user = self.request.user
             user_checkout.save()
+            context["client_token"]=user_checkout.get_client_token()
             self.request.session["user_checkout_id"] = user_checkout.id
         elif not self.request.user.is_authenticated() and user_check_id ==None:
             context["login_form"] = AuthenticationForm()
@@ -163,6 +173,10 @@ class CheckoutView(CartOrderMixin,FormMixin,DetailView):
             pass
         if user_check_id != None:
             user_can_continue = True
+            if self.request.user.is_authenticated():#GUEST USER
+                user_checkout2=UserCheckout.objects.get(id=user_check_id)
+                context["client_token"]=user_checkout2.get_client_token()
+
       #  if self.get_cart() is not None:
             context["order"] = self.get_order()
         context["user_can_continue"] = user_can_continue
@@ -218,11 +232,36 @@ class CheckoutView(CartOrderMixin,FormMixin,DetailView):
 class CheckoutFinalView(CartOrderMixin,View):
     def post(self,request,*args,**kwargs):
         order = self.get_order()
-        if request.POST.get("payment_token") == "ABC" :
-            order.mark_completed()
-            messages.success(request,"Thank you for your odrer . ")
-            del request.session["cart_id"]
-            del request.session["order_id"]
+        order_total =order.order_total
+
+        nonce =request.POST.get("payment_method_nonce")
+        if nonce:
+          result = gateway.transaction.sale({
+            "amount": order_total,
+            "payment_method_nonce": nonce,
+              "billing": {
+                  "locality": "Chicago",
+
+                  "postal_code": "%s"%(order.billing_address.zipcode),
+              },
+            "options": {
+                "submit_for_settlement": True
+            }
+         })
+          if result.is_success:
+
+
+
+              order.mark_completed(order_id=result.transaction.id)
+              messages.success(request, "Thank you for your odrer . ")
+              del request.session["cart_id"]
+              del request.session["order_id"]
+          else:
+              #messages.success(request, "there was a problem with your order ")
+              messages.success(request, "%s"%(result.message))
+              return redirect("checkout")
+
+
 
         return redirect("order_detail",pk=order.pk)
     def get(self,request,*args,**kwargs):

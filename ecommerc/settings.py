@@ -48,6 +48,8 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -101,6 +103,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+LOCALE_PATHS=[
+    os.path.join(BASE_DIR,'locale')
+]
 
 
 # Static files (CSS, JavaScript, Images)
@@ -130,5 +135,5 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
 SECURE_FRAME_DENY               = False
 BRAINTREE_PUBLIC= "ycn3nsz4bkwmvdyt"
 BRAINTREE_PRIVATE ="882ca7cbf5a46a78c7a943ef12f7e2ce "
-BRAINTREE_MERCHAND_ID ="f9hdgrhq7hn93t4z"
+BRAINTREE_MERCHANT_ID ="f9hdgrhq7hn93t4z"
 BRAINTREE_ENVIRONEMNT="Sandbox"

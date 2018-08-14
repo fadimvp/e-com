@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-
+{% load i18n %}
 
 {% block content %}
+
     {% if featured_image %}
     <div class="jumbotron">
 
@@ -50,7 +51,7 @@
  <div class="container-fluid ">
 <div class="row">
 
-<h3>Recommended Products </h3>
+<h3>{% trans 'Recommended Products' %} </h3>
 {% include "products/products.html" with object_list=products col_class_set="col-sm-3" %}
 </div></div>
     <center>

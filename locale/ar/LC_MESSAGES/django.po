@@ -1,0 +1,161 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-14 23:06+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\carts\templates\carts\checkout_view.html:33
+#: .\teams\templates\registration\login.html:24
+msgid "Forgot password"
+msgstr " نسيت الباسورد "
+
+#: .\carts\templates\carts\checkout_view.html:33
+#: .\teams\templates\registration\login.html:24
+msgid "Reset it"
+msgstr ""
+
+#: .\carts\templates\carts\checkout_view.html:34
+#: .\teams\templates\registration\login.html:25
+msgid "Not member"
+msgstr ""
+
+#: .\carts\templates\carts\checkout_view.html:34
+#: .\teams\templates\registration\login.html:25
+msgid "Register"
+msgstr "تسجيل "
+
+#: .\products\views.py:20
+msgid "products/product_list.html"
+msgstr ""
+
+#: .\teams\templates\home.html:54
+msgid "Recommended Products"
+msgstr "المنتجات الموصى بها"
+
+#: .\teams\templates\navbar.html:21
+msgid "Home"
+msgstr "الصفحة  الرئسية "
+
+#: .\teams\templates\navbar.html:23
+msgid "Products"
+msgstr "المنتجات"
+
+#: .\teams\templates\navbar.html:24
+msgid "About"
+msgstr " عن  الموقع  "
+
+#: .\teams\templates\navbar.html:25
+msgid "Contact"
+msgstr "اتصل بنا "
+
+#: .\teams\templates\navbar.html:41
+msgid "Orders"
+msgstr "الطلبات "
+
+#: .\teams\templates\navbar.html:42
+msgid "Logout"
+msgstr "الخروج "
+
+#: .\teams\templates\navbar.html:44
+msgid "registration"
+msgstr "تسجيل "
+
+#: .\teams\templates\navbar.html:46 .\teams\templates\navbar.html.py:55
+msgid "Login"
+msgstr "تسجيل الدخول "
+
+#: .\teams\templates\navbar.html:58
+#, fuzzy
+#| msgid "Forgot password"
+msgid "Forgot Passowrd ?"
+msgstr " نسيت الباسورد "
+
+#: .\teams\templates\navbar.html:75
+msgid "Language"
+msgstr "اللغة"
+
+#: .\teams\templates\registration\activate.html:6
+msgid "Account activation failed"
+msgstr ""
+
+#: .\teams\templates\registration\activation_complete.html:5
+msgid "Your account is now activated."
+msgstr ""
+
+#: .\teams\templates\registration\activation_email.txt:2
+msgid "Activate account at"
+msgstr ""
+
+#: .\teams\templates\registration\activation_email.txt:11
+#, python-format
+msgid "The above link is valid for %(expiration_days)s days."
+msgstr ""
+
+#: .\teams\templates\registration\login.html:15
+#: .\teams\templates\registration\password_change_form.html:9
+#: .\teams\templates\registration\password_reset_confirm.html:12
+msgid "Submit"
+msgstr "ارسال الطلب "
+
+#: .\teams\templates\registration\logout.html:5
+msgid "You have successfully logged out."
+msgstr ""
+
+#: .\teams\templates\registration\password_change_done.html:5
+msgid "Password changed"
+msgstr "تغير كلمة السر"
+
+#: .\teams\templates\registration\password_reset_complete.html:6
+msgid "Password reset successfully"
+msgstr ""
+
+#: .\teams\templates\registration\password_reset_complete.html:8
+msgid "Log in"
+msgstr "تسجيل الدخول "
+
+#: .\teams\templates\registration\password_reset_confirm.html:17
+msgid "Password reset failed"
+msgstr ""
+
+#: .\teams\templates\registration\password_reset_done.html:5
+msgid "Email with password reset instructions has been sent."
+msgstr ""
+
+#: .\teams\templates\registration\password_reset_email.html:3
+#, python-format
+msgid "Reset password at %(site_name)s"
+msgstr ""
+
+#: .\teams\templates\registration\password_reset_form.html:13
+msgid "Reset"
+msgstr "تغير "
+
+#: .\teams\templates\registration\registration_closed.html:5
+msgid "Registration is currently closed."
+msgstr ""
+
+#: .\teams\templates\registration\registration_complete.html:5
+msgid "You are now registered. Activation email sent."
+msgstr ""
+
+#: .\teams\templates\registration\registration_form.html:14
+msgid "Join"
+msgstr "انضم "
+
+#~ msgid "عربي"
+#~ msgstr "English"

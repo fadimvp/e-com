@@ -8,6 +8,7 @@ from .models import UserAddress,UserCheckout,Order
 from .mixins import CartOrderMixin,LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+import braintree
 
 # Create your views here.
 class OrderDetail(LoginRequiredMixin,DetailView):

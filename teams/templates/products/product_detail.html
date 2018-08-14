@@ -1,6 +1,6 @@
+
 {% extends 'base.html' %}
  <script>
-
   {% block jquery %}
   function setPrice(){
  var price = $(".variation_select option:selected").attr("data-price")
@@ -9,9 +9,6 @@
     $("img").attr(img);
     var sale_price = $(".variation_select option:selected").attr("data-sale-price")
     var sale_price = $(".variation_select option:selected").attr("data-sale-price")
-
-
-
     if(sale_price != "" && sale_price !="None" || sela_price != "null"){
     $("#price").html("<h3>" + sale_price + "  <small  style='color:red;text-decoration:line-through;'> Orignal price : " + price + " </small></h3>");
     }else{
@@ -20,10 +17,8 @@
     }
     setPrice()
   $(".variation_select").change(function(){
-
     setPrice()
   })
-
 $("#submit-btn").click(function(event){
    event.preventDefault();
    var formData = $("#add-form").serialize();
@@ -38,7 +33,6 @@ $("#submit-btn").click(function(event){
    "</strong>"
    + message + "</div></div></div>"
    $("body").append(template);
-
    $(".container-alert-flash").fadeIn();
    setTimeout(function(){
     $(".container-alert-flash").fadeOut();
@@ -49,21 +43,15 @@ $("#submit-btn").click(function(event){
     url: "{% url 'cartt' %}",
     data: formData,
     success: function(data){
-
     $("#jquery-message").text("Added " + data.item_added + " Deleted " + data.deleted)
           showFlashMessage(data.flash_message);
           updateCartItem();
-
-
     },
     error:function(response, error){
-
     $("#add-form").submit()
     }
     })
     })
-
-
 {% endblock %}
   </script>
 {% block content %}

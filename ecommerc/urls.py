@@ -26,6 +26,8 @@ from orders.views import(
     OrderList,
     OrderDetail
 )
+from products import views
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'teams.views.home', name='home'),
@@ -41,6 +43,7 @@ urlpatterns = [
     url(r'^checkout/final/$', CheckoutFinalView.as_view(), name='checkout_final'),
     url(r'^orders/$', OrderList.as_view(), name='orders'),
     url(r'^orders/(?P<pk>\d+)/$', OrderDetail.as_view(), name='order_detail'),
+    url(r'^change-language/$',views.change_language,name='change-language'),
 
 ]
 if settings.DEBUG :

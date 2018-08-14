@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load i18n %}
 
       <!-- Static navbar -->
       <nav class="navbar navbar-default">
@@ -17,10 +18,11 @@
           <div id="navbar" class="navbar-collapse collapse">
 
             <ul class="nav navbar-nav">
-              <li ><a href="/">Home</a></li>
-                 <li><a href="{% url 'pro'%}">Products</a></li>
-              <li><a href="">About</a></li>
-              <li><a href="#">Contact</a></li>
+              <li ><a href="/">{% trans 'Home' %}</a></li>
+
+                 <li><a href="{% url 'pro'%}">{% trans 'Products' %}</a></li>
+              <li><a href="">{% trans 'About' %}</a></li>
+              <li><a href="#">{% trans 'Contact' %}</a></li>
 
               <form class="navbar-form navbar-left"method="get"role="search"action="{% url 'pro' %}">
         <div class="form-group">
@@ -36,13 +38,12 @@
                         <a href="{% url 'cartt' %}"> <i class="fa fa-shopping-cart fa-2x"> <span id="cart-count-badge" class="badge"> {{request.session.cart_item_count}} </span></i></a>
                     </li>
                 {% if request.user.is_authenticated  %}
-
-
-                  <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                  <li><a href="{% url 'orders' %}">{% trans 'Orders' %}</a></li>
+                  <li><a href="{% url 'auth_logout' %}">{% trans 'Logout' %}</a></li>
                 {% else %}
-               <li><a href="{% url 'registration_register' %}">registrtion </a></li>
+               <li><a href="{% url 'registration_register' %}">{% trans 'registration' %} </a></li>
                     <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Login' %} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <form class='navbar-form navbar-right' method='POST' action="{% url 'auth_login' %}">{% csrf_token %}
               <div class='form-group'>
@@ -51,10 +52,11 @@
               <div class='form-group'>
                   <input type='password' class='form-control' name='password' placeholder='Password' />
               </div>
-              <button type='submit' class='btn btn-default'>Login</button>
+              <button type='submit' class='btn btn-default'>{% trans 'Login' %}</button>
 
           </form>
-                    <p class="text-center"><a href="{% url 'registration_register' %}"> Forgot Passowrd ? </a></p>
+                    <p class="text-center"><a href="{% url 'registration_register' %}"> {% trans 'Forgot Passowrd ?'%}
+                    </a></p>
                   <!--li><a href="#">Action</a></li>
                   <li><a href="#">Another action</a></li>
                   <li><a href="#">Something else here</a></li>
@@ -66,9 +68,24 @@
                 </ul>
               </li>
 
+
                 {% endif %}
+                    <li class="nav-item dropdowd">
+                        <a  href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown"aria-haspopup="true"aria-expanded="false" >{% trans 'Language' %} <i class="fas fa-sort-down fa "> </i></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                             <a  class="dropdown-item"
+                                 href="/change-language/?return_url={{request.path}}&lang_code=ar">عربي</a><br/>
+                            <a  class="dropdown-item"
+                                 href="/change-language/?return_url={{request.path}}&lang_code=en">English</a>
+
+
+                        </div>
+                    </li>
+
 
             </ul>
+
 
 
           </div><!--/.nav-collapse -->

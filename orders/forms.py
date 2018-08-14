@@ -42,4 +42,4 @@ class UserAddressForm(forms.ModelForm):
 class UserOrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields =['status','cart','user','billing_address','shipping_address','shipping_total_price','order_total']
+        fields =['status','cart','user','billing_address','shipping_address','shipping_total_price','order_total','order_id']

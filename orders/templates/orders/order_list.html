@@ -2,11 +2,32 @@
 {% block content%}
 <div class="container "><br/><br/>
 
-{% for object in object_list %}
+        <td>{{ item.item.get_title }}</td>
+    {% if   object_list|length <= 0 %}
+    <div class="col-sm-6 col-sm-offset-3 tetxt-center">
 
-<li>
-    {{object.id}}
-    {{ object.cart.items.all }}</li>
-{% endfor %}
-</div>
+        <p class="lead">You do not currently have orders .</p>
+    </div>
+    {% else %}
+    <div class="col-sm-6 col-sm-offset-3 tetxt-center">
+
+        <h1>Your Orders </h1>
+
+    <table class="table">
+{% for object in object_list %}
+<tr>
+<td>
+   <a href='{{ object.get_absolute.url }}{{object.id}}' >View #
+       {% if object_order_id %}{{ object.order_id}}{% else %}{{object.id}}
+       {% endif %}</a>
+</td>
+   <td>
+       Item Count :{{ object.cart.items.count }}
+   </td>
+
+
+</tr>
+        {% endfor %}</table>
+    {% endif %}
+</div></div>
 {% endblock %}
